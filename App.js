@@ -6,12 +6,19 @@
  * @flow
  */
 
-import React, { Component } from 'react';
 import LoginScreen from './screens/LoginScreen';
 import Login from './screens/Login';
 
-export default class App extends Component {
-  render() {
-    return <Login />;
-  }
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+const MainStackNavigator = createStackNavigator({
+  LoginScreen: { screen: LoginScreen },
+  Login: { screen: Login },
+}, {
+  headerMode: 'screen' // Signifie que le header sera géré au niveau de chaque écran avec la variable statique navigationOptions
 }
+);
+const App = createAppContainer(MainStackNavigator);
+
+export default App;
