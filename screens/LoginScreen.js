@@ -7,28 +7,35 @@ import {
     View,
     Text,
     StatusBar,
+    TouchableOpacity,
     Image,
 } from 'react-native';
 
 export default class LoginScreen extends Component {
+    static navigationOptions = ({ navigation }) => {
+        return {
+            header: (
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 40, backgroundColor: '#008489' }}>
+                    <TouchableOpacity style={{ margin: 10 }} >
+                        <Image source={require('../assets/multiply.png')} style={{ width: 25, height: 25 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ margin: 10 }} onPress={() => navigation.navigate('Login')}>
+                        <Text style={{ fontSize: 20, color: 'white' }}>Connexion</Text>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+    }
     render() {
         return (
             <>
                 <StatusBar barStyle="light-content" />
                 <SafeAreaView>
                     <ScrollView
-                        contentInsetAdjustmentBehavior="automatic"
                         style={styles.scrollView}>
 
                         <View style={{ margin: 20 }}>
-                            <View style={{ flexDirection: 'row', marginBottom: 40 }}>
-                                <View style={{ flex: 3 }}>
-                                    <Image source={require('../assets/multiply.png')} style={{ width: 25, height: 25 }} />
-                                </View>
-                                <View style={{ flex: 3, alignItems: 'flex-end' }}>
-                                    <Text style={{ fontSize: 20, color: 'white' }}>Connexion</Text>
-                                </View>
-                            </View>
+
                             <View style={{ marginBottom: 40 }}>
                                 <Image source={require('../assets/airbnb.png')} style={{ width: 50, height: 50 }} />
                             </View>
@@ -56,7 +63,6 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
     scrollView: {
         backgroundColor: '#008489',
-        height: '100%',
     },
     engine: {
         position: 'absolute',
